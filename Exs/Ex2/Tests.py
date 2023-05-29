@@ -23,9 +23,9 @@ def main():
     test_feature_extraction()
     train_dataset = genre_classifier.MusicDataset("jsons/train.json")
     test_dataset = genre_classifier.MusicDataset("jsons/test.json")
+    model = genre_classifier.ClassifierHandler.train_new_model()
 
     data_generator = torch.utils.data.DataLoader(train_dataset, batch_size=34)
-    handler = genre_classifier.ClassifierHandler()
     losses = []
     for epoch in range(10):
         for X, y in data_generator:
