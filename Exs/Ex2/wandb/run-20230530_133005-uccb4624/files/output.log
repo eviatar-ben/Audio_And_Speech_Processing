@@ -1,0 +1,13 @@
+Initializing the music classifier...
+Loading training and test data...
+Loading audio files:   0%|          | 0/1079 [00:36<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 412, in <module>
+    ClassifierHandler.train_new_model(TrainingParameters())
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 280, in train_new_model
+    training_data = ClassifierHandler.load_data(music_classifier, training_parameters.train_json_path)
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 386, in load_data
+    for result in pool.imap_unordered(ClassifierHandler.load_audio, data):
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\multiprocessing\pool.py", line 861, in next
+    self._cond.wait(timeout)
+KeyboardInterrupt

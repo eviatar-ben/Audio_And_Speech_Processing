@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\run_feats.py", line 45, in <module>
+    for epoch in range(genre_classifier.TrainingParameters.epochs):
+AttributeError: type object 'TrainingParameters' has no attribute 'epochs'

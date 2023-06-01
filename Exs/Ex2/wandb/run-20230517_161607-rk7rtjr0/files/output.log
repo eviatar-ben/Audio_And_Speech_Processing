@@ -1,0 +1,16 @@
+C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\site-packages\sklearn\linear_model\_stochastic_gradient.py:163: FutureWarning: The loss 'log' was deprecated in v1.1 and will be removed in version 1.3. Use `loss='log_loss'` which is equivalent.
+  warnings.warn(
+Traceback (most recent call last):
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\run_feats.py", line 48, in <module>
+    for X, y in data_generator:
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier.py", line 111, in exctract_feats
+    mfcc = librosa.feature.mfcc(y=wav, sr=SR, n_mfcc=MFCC_FEATURES_NUMBER, dct_type=2)
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\site-packages\librosa\feature\spectral.py", line 2002, in mfcc
+    S = power_to_db(melspectrogram(y=y, sr=sr, **kwargs))
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\site-packages\librosa\feature\spectral.py", line 2144, in melspectrogram
+    S, n_fft = _spectrogram(
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\site-packages\librosa\core\spectrum.py", line 2838, in _spectrogram
+    stft(
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\site-packages\librosa\core\spectrum.py", line 377, in stft
+    stft_matrix[..., bl_s + off_start : bl_t + off_start] = fft.rfft(
+KeyboardInterrupt

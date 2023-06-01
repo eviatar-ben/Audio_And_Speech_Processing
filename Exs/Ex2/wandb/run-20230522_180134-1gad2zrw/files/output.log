@@ -1,0 +1,35 @@
+
+Loading audio files:   0%|          | 0/1079 [00:00<?, ?it/s]
+Initializing the music classifier...
+
+
+
+Loading audio files:  87%|████████▋ | 936/1079 [00:38<00:00, 206.46it/s]
+Loading audio files: 100%|██████████| 1079/1079 [00:38<00:00, 27.73it/s]
+
+
+
+
+
+
+
+
+
+
+Extracting features:  93%|█████████▎| 1005/1079 [00:21<00:01, 57.62it/s]
+Extracting features: 100%|██████████| 1079/1079 [00:22<00:00, 48.04it/s]
+Loading audio files:   0%|          | 0/119 [00:00<?, ?it/s]
+Loading audio files: 100%|██████████| 119/119 [00:22<00:00,  5.24it/s]
+
+Extracting features:  93%|█████████▎| 111/119 [00:02<00:00, 57.55it/s]
+Normalizing features...
+Creating data loaders...
+Extracting features: 100%|██████████| 119/119 [00:02<00:00, 51.37it/s]
+Traceback (most recent call last):
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 413, in <module>
+    ClassifierHandler.train_new_model(TrainingParameters())
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 313, in train_new_model
+    music_classifier.backward(batch_features, scores, batch_labels)
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 219, in backward
+    self.weights_ -= self.learning_rate * weights_grad
+RuntimeError: a leaf Variable that requires grad is being used in an in-place operation.

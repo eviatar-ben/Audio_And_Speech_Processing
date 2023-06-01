@@ -1,0 +1,27 @@
+2023-05-17 16:54:41,684 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Current SDK version is 0.15.2
+2023-05-17 16:54:41,684 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Configure stats pid to 8692
+2023-05-17 16:54:41,686 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Loading settings from C:\Users\eviatar\.config\wandb\settings
+2023-05-17 16:54:41,686 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Loading settings from C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\wandb\settings
+2023-05-17 16:54:41,686 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-05-17 16:54:41,687 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-05-17 16:54:41,688 INFO    MainThread:8692 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'Exs\\Ex2\\run_feats.py', 'program': 'C:\\Users\\eviatar\\PycharmProjects\\Audio And Speech Processing\\Exs\\Ex2\\run_feats.py'}
+2023-05-17 16:54:41,689 INFO    MainThread:8692 [wandb_init.py:_log_setup():507] Logging user logs to C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\wandb\run-20230517_165441-wopz4nc4\logs\debug.log
+2023-05-17 16:54:41,689 INFO    MainThread:8692 [wandb_init.py:_log_setup():508] Logging internal logs to C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\wandb\run-20230517_165441-wopz4nc4\logs\debug-internal.log
+2023-05-17 16:54:41,690 INFO    MainThread:8692 [wandb_init.py:init():547] calling init triggers
+2023-05-17 16:54:41,690 INFO    MainThread:8692 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'learning_rate': 0.001, 'architecture': 'GAN', 'dataset': 'MNIST', 'epochs': 1}
+2023-05-17 16:54:41,690 INFO    MainThread:8692 [wandb_init.py:init():596] starting backend
+2023-05-17 16:54:41,690 INFO    MainThread:8692 [wandb_init.py:init():600] setting up manager
+2023-05-17 16:54:41,700 INFO    MainThread:8692 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=spawn, using: spawn
+2023-05-17 16:54:41,712 INFO    MainThread:8692 [wandb_init.py:init():606] backend started and connected
+2023-05-17 16:54:41,716 INFO    MainThread:8692 [wandb_init.py:init():700] updated telemetry
+2023-05-17 16:54:41,876 INFO    MainThread:8692 [wandb_init.py:init():737] communicating run to backend with 60.0 second timeout
+2023-05-17 16:54:42,790 INFO    MainThread:8692 [wandb_run.py:_on_init():2177] communicating current version
+2023-05-17 16:54:43,166 INFO    MainThread:8692 [wandb_run.py:_on_init():2186] got version response 
+2023-05-17 16:54:43,167 INFO    MainThread:8692 [wandb_init.py:init():787] starting run threads in backend
+2023-05-17 16:54:43,553 INFO    MainThread:8692 [wandb_run.py:_console_start():2158] atexit reg
+2023-05-17 16:54:43,554 INFO    MainThread:8692 [wandb_run.py:_redirect():2013] redirect: SettingsConsole.WRAP_RAW
+2023-05-17 16:54:43,554 INFO    MainThread:8692 [wandb_run.py:_redirect():2078] Wrapping output streams.
+2023-05-17 16:54:43,554 INFO    MainThread:8692 [wandb_run.py:_redirect():2103] Redirects installed.
+2023-05-17 16:54:43,556 INFO    MainThread:8692 [wandb_init.py:init():829] run started, returning control to user process
+2023-05-17 16:56:12,362 WARNING MsgRouterThr:8692 [router.py:message_loop():77] message_loop has been closed

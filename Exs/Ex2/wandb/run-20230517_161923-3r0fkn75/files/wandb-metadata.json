@@ -1,0 +1,42 @@
+{
+    "os": "Windows-10-10.0.22621-SP0",
+    "python": "3.10.11",
+    "heartbeatAt": "2023-05-17T13:19:24.448860",
+    "startedAt": "2023-05-17T13:19:23.230993",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "C:\\Users\\eviatar\\PycharmProjects\\Audio And Speech Processing\\Exs\\Ex2\\run_feats.py",
+    "codePath": "Exs\\Ex2\\run_feats.py",
+    "git": {
+        "remote": "https://github.com/eviatar-ben/Audio_And_Speech_Processing.git",
+        "commit": "1ee5a8985147dc352c540200c5fd4a1c259bdecf"
+    },
+    "email": "eviatar",
+    "root": "C:/Users/eviatar/PycharmProjects/Audio And Speech Processing",
+    "host": "DESKTOP-5IK3Q22",
+    "username": "eviatar",
+    "executable": "C:\\Users\\eviatar\\anaconda3\\envs\\Audio And Speech Processing\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1792.0,
+        "min": 0.0,
+        "max": 1992.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1792.0,
+            "min": 0.0,
+            "max": 1992.0
+        }
+    ],
+    "disk": {
+        "total": 460.54784774780273,
+        "used": 315.5688247680664
+    },
+    "memory": {
+        "total": 15.747657775878906
+    }
+}

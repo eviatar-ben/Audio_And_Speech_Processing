@@ -1,0 +1,32 @@
+
+Loading audio files:   0%|          | 0/1079 [00:00<?, ?it/s]
+Initializing the music classifier...
+
+
+Loading audio files:  80%|███████▉  | 858/1079 [00:22<00:00, 316.40it/s]
+Loading audio files: 100%|██████████| 1079/1079 [00:22<00:00, 47.16it/s]
+
+
+
+
+
+
+
+
+Extracting features:  96%|█████████▌| 1035/1079 [00:17<00:00, 68.48it/s]
+Extracting features: 100%|██████████| 1079/1079 [00:18<00:00, 59.72it/s]
+Loading audio files: 100%|██████████| 119/119 [00:18<00:00,  6.34it/s]
+Extracting features:   1%|          | 1/119 [00:00<00:14,  7.88it/s]
+Extracting features...
+Normalizing features...
+Creating data loaders...
+
+Extracting features: 100%|██████████| 119/119 [00:01<00:00, 66.72it/s]
+Traceback (most recent call last):
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 411, in <module>
+    ClassifierHandler.train_new_model(TrainingParameters())
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 308, in train_new_model
+    scores = music_classifier.forward(batch_features)
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 190, in forward
+    mul = torch.matmul(feats, self.weights_)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (32x520 and 20x3)

@@ -1,0 +1,28 @@
+Initializing the music classifier...
+Loading training and test data...
+
+
+
+Loading audio files: 100%|██████████| 1079/1079 [00:29<00:00, 36.98it/s]
+Extracting features:   0%|          | 0/1079 [00:00<?, ?it/s]
+Extracting features:   0%|          | 0/1079 [00:03<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 413, in <module>
+    ClassifierHandler.train_new_model(TrainingParameters())
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 281, in train_new_model
+    training_data = ClassifierHandler.load_data(music_classifier, training_parameters.train_json_path)
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 394, in load_data
+    return MusicDataset(music_classifier, [list(audio_data), list(label_data)])
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 401, in __init__
+    self.audio_features = music_classifier.extract_feats(self.audio_data)
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 161, in extract_feats
+    dataset_features.append(future.result())
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\concurrent\futures\_base.py", line 451, in result
+    return self.__get_result()
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\concurrent\futures\_base.py", line 403, in __get_result
+    raise self._exception
+  File "C:\Users\eviatar\anaconda3\envs\Audio And Speech Processing\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\eviatar\PycharmProjects\Audio And Speech Processing\Exs\Ex2\genre_classifier_elias.py", line 145, in extract_features
+    np.mean(librosa.feature.mfcc(wav, sr=sr, n_mfcc=50), axis=1),
+TypeError: mfcc() takes 0 positional arguments but 1 positional argument (and 2 keyword-only arguments) were given

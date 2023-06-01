@@ -1,0 +1,42 @@
+{
+    "os": "Windows-10-10.0.22621-SP0",
+    "python": "3.10.11",
+    "heartbeatAt": "2023-05-30T10:30:07.127227",
+    "startedAt": "2023-05-30T10:30:05.735041",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "C:\\Users\\eviatar\\PycharmProjects\\Audio And Speech Processing\\Exs\\Ex2\\genre_classifier_elias.py",
+    "codePath": "Exs\\Ex2\\genre_classifier_elias.py",
+    "git": {
+        "remote": "https://github.com/eviatar-ben/Audio_And_Speech_Processing.git",
+        "commit": "7051b72f0b68471c6356494c7f6f4ea9df1f7dee"
+    },
+    "email": "eviatar",
+    "root": "C:/Users/eviatar/PycharmProjects/Audio And Speech Processing",
+    "host": "DESKTOP-5IK3Q22",
+    "username": "eviatar",
+    "executable": "C:\\Users\\eviatar\\anaconda3\\envs\\Audio And Speech Processing\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1792.0,
+        "min": 0.0,
+        "max": 1992.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1792.0,
+            "min": 0.0,
+            "max": 1992.0
+        }
+    ],
+    "disk": {
+        "total": 460.54784774780273,
+        "used": 314.0639762878418
+    },
+    "memory": {
+        "total": 15.747657775878906
+    }
+}
