@@ -36,60 +36,7 @@ class DigitClassifier():
         self.path_to_test_data_dir = args.path_to_test_data_dir
 
     @staticmethod
-    def dtw(x, y, dist=lambda x, y: norm(x - y, ord=2)):
-        from numpy import array, zeros, argmin, inf, equal, ndim
-        from scipy.spatial.distance import cdist
-        """
-        Computes Dynamic Time Warping (DTW) of two sequences.
-
-        :param array x: N1*M array
-        :param array y: N2*M array
-        :param func dist: distance used as cost measure
-
-        Returns the minimum distance, the cost matrix, the accumulated cost matrix, and the wrap path.
-        """
-
-        def _traceback(D):
-            i, j = array(D.shape) - 2
-            p, q = [i], [j]
-            while ((i > 0) or (j > 0)):
-                tb = argmin((D[i, j], D[i, j + 1], D[i + 1, j]))
-                if (tb == 0):
-                    i -= 1
-                    j -= 1
-                elif (tb == 1):
-                    i -= 1
-                else:  # (tb == 2):
-                    j -= 1
-                p.insert(0, i)
-                q.insert(0, j)
-            return array(p), array(q)
-
-        r, c = len(x), len(y)
-        D0 = zeros((r + 1, c + 1))
-        D0[0, 1:] = inf
-        D0[1:, 0] = inf
-        D1 = D0[1:, 1:]  # view
-
-        for i in range(r):
-            for j in range(c):
-                D1[i, j] = dist(x[i], y[j])
-
-        C = D1.copy()
-
-        for i in range(r):
-            for j in range(c):
-                D1[i, j] += min(D0[i, j], D0[i, j + 1], D0[i + 1, j])
-        if len(x) == 1:
-            path = zeros(len(y)), range(len(y))
-        elif len(y) == 1:
-            path = range(len(x)), zeros(len(x))
-        else:
-            path = _traceback(D0)
-        return D1[-1, -1] / sum(D1.shape), C, D1, path
-
-    @staticmethod
-    def dtw1(x, y):
+    def dtw(x, y):
         # cost_matrix = scipy.spatial.distance.cdist(x, y, metric='seuclidean')
         cost_matrix = torch.cdist(x, y)
         m, n = np.shape(cost_matrix)
@@ -113,9 +60,31 @@ class DigitClassifier():
                         min_local_dist = cost_matrix[i - 1, j - 1]
 
                     cost_matrix[i, j] = cost_matrix[i, j] + min_local_dist
-        return cost_matrix, cost_matrix[m - 1, n - 1]
+        return cost_matrix[m - 1, n - 1], cost_matrix
 
-    def get_train_data(self, validate=True):
+    @staticmethod
+    def get_dwt_distance(mfcc, n, librosa_dwt=False):
+        distance = 0
+        # for j in range(len(mfcc)):
+        #     if librosa_dwt:
+        #         D, wp = librosa.sequence.dtw(mfcc[j], n[j])
+        #         distance += D[-1, -1]
+        #     else:
+        #         distance, _ = DigitClassifier.dtw(torch.tensor(mfcc[j]).unsqueeze(0), torch.tensor(n[j]).unsqueeze(0))
+        #         # distance, _ = DigitClassifier.dtw(torch.tensor([2, 0, 2], dtype=torch.float).unsqueeze(0),
+        #         #                                   torch.tensor([-1, 0, 1], dtype=torch.float).unsqueeze(0))
+        #         distance += distance
+        if librosa_dwt:
+            D, wp = librosa.sequence.dtw(mfcc.T, n.T)
+            distance += D[-1, -1]
+        else:
+            distance, _ = DigitClassifier.dtw(torch.tensor(mfcc), torch.tensor(n))
+            # distance, _ = DigitClassifier.dtw(torch.tensor([2, 0, 2], dtype=torch.float).unsqueeze(0),
+            #                                   torch.tensor([-1, 0, 1], dtype=torch.float).unsqueeze(0))
+            distance += distance
+        return distance
+
+    def get_train_data(self):
         """
         function to get the training data
         return: list of training data
@@ -126,11 +95,9 @@ class DigitClassifier():
         train_data_labels = []
         for i, sub in enumerate(sub_directories):
             validation = [f for f in os.listdir(os.path.join(self.path_to_training_data, sub)) if f.endswith(".wav")]
-            if validate:
-                validation = validation[:int(len(validation) * 0.8)]
             for file in validation:
-                y, sr = librosa.load(os.path.join(self.path_to_training_data, sub, file))
-                mfcc = librosa.feature.mfcc(y=y, sr=sr, dct_type=3)
+                y, sr = librosa.load(os.path.join(self.path_to_training_data, sub, file), sr=None)
+                mfcc = librosa.feature.mfcc(y=y, sr=sr, dct_type=2)
                 # mfcc -= (np.mean(mfcc, axis=0) + 1e-8)
                 # mfcc /= np.std(mfcc, axis=0)
 
@@ -145,26 +112,23 @@ class DigitClassifier():
         result = []
 
         for f_path in audio_files:
-            wav, sr = librosa.load(f_path)
-            mfcc = librosa.feature.mfcc(y=wav, sr=sr)
+            wav, sr = librosa.load(f_path, sr=None)
+            mfcc = librosa.feature.mfcc(y=wav, sr=sr, dct_type=2)
             # mfcc -= (np.mean(mfcc, axis=0) + 1e-8)
             # mfcc /= np.std(mfcc, axis=0)
 
             nearest_neighbor = None
             nearest_neighbor_distance = math.inf
             for i, n in enumerate(x):
+                # euclidean distance
                 if euclidean:
-                    # euclidean distance
                     distance = torch.dist(torch.tensor(mfcc).flatten(), torch.tensor(n).flatten())
                 # DTW distance
-                elif librosa_dwt:
-                    D, wp = librosa.sequence.dtw(mfcc, n)
-                    # get the last element of the last row
-                    distance = D[-1, -1]  # todo: check this out
                 else:
-                    distance, cost, acc_cost, path = DigitClassifier.dtw(torch.tensor(mfcc), torch.tensor(n))
-                if distance.item() < nearest_neighbor_distance:
-                    nearest_neighbor_distance = distance.item()
+                    distance = self.get_dwt_distance(mfcc.T, n.T, librosa_dwt=librosa_dwt)
+
+                if distance < nearest_neighbor_distance:
+                    nearest_neighbor_distance = distance
                     nearest_neighbor = y[i]
             result.append(nearest_neighbor)
 
@@ -252,10 +216,10 @@ def cross_validate():
         print(f"librosa_dwt_labels: {librosa_dwt_labels}")
         print(f"euclidean_labels: {euclidean_labels}")
 
-        print(f"compatibility between librosa dwt and local dwt:"
-              f" {sum([l1 == l2 for l1, l2 in zip(librosa_dwt_labels, dwt_labels)]) / len(librosa_dwt_labels)}")
-        print(f"compatibility between euclidean and local dwt:"
-              f" {sum([l1 == l2 for l1, l2 in zip(euclidean_labels, dwt_labels)]) / len(euclidean_labels)}")
+        # print(f"compatibility between librosa dwt and local dwt:"
+        #       f" {sum([l1 == l2 for l1, l2 in zip(librosa_dwt_labels, dwt_labels)]) / len(librosa_dwt_labels)}")
+        # print(f"compatibility between euclidean and local dwt:"
+        #       f" {sum([l1 == l2 for l1, l2 in zip(euclidean_labels, dwt_labels)]) / len(euclidean_labels)}")
 
         local_dwt_correct_label = sum([l == i + 1 for l in librosa_dwt_labels])
         librosa_dwt_correct_label = sum([l == i + 1 for l in dwt_labels])
